@@ -21,7 +21,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PronounceApi {
     private final RestTemplate restTemplate;
-    @Value("${api.path}") private String PATH;
+    @Value("${pron.path}") private String P_PATH;
+    @Value("${recog.path}") private String R_PATH;
     @Value("${api.key}") private String accessKey;
 
     public Double getSentenceScore(String eng, String base64) throws JsonProcessingException {
@@ -40,7 +41,7 @@ public class PronounceApi {
 
         HttpEntity<JsonNode> requestEntity = new HttpEntity<>(requests, headers);
 
-        String result = restTemplate.exchange(PATH, HttpMethod.POST, requestEntity, String.class).getBody();
+        String result = restTemplate.exchange(P_PATH, HttpMethod.POST, requestEntity, String.class).getBody();
 
         Map<String, Object> res = null;
 
@@ -70,7 +71,7 @@ public class PronounceApi {
 
         HttpEntity<JsonNode> requestEntity = new HttpEntity<>(requests, headers);
 
-        String result = restTemplate.exchange(PATH, HttpMethod.POST, requestEntity, String.class).getBody();
+        String result = restTemplate.exchange(R_PATH, HttpMethod.POST, requestEntity, String.class).getBody();
 
         Map<String, Object> res = null;
 
