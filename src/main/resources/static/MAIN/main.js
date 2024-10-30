@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const query = searchInput.value.trim(); // 검색어 가져오기
         if (query) {
             // Cambridge 사전 검색 페이지를 새 창에서 열기
-            window.open(`https://dictionary.cambridge.org/ko/%EC%82%AC%EC%A0%84/%EC%98%81%EC%96%B4/${encodeURIComponent(query)}`, '_blank');
+            window.open(`https://dictionary.cambridge.org/ko/%EC%82%AC%EC%A0%84/%EC%98%81%EC%96%B4-%ED%95%9C%EA%B5%AD%EC%96%B4/${encodeURIComponent(query)}`, '_blank');
         } else {
             alert("검색어를 입력하세요."); // 검색어가 없을 때 경고
         }
