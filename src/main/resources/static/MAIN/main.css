@@ -42,3 +42,17 @@ p {
 .faq-item p {
   color: #2e4a35; /* 더 짙은 회녹색 텍스트 */
 }
+
+.header__menu ul {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+.header__menu ul li {
+  margin-right: 170px; /* 메뉴 간의 여백 */
+}
+
+#studyLink, #mypageLink {
+  margin-left: -170px; /* 링크를 왼쪽으로 이동 */
+}
