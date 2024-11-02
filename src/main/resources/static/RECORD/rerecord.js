@@ -37,19 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return voices.find((voice) => voice.name === name);
   }
 
-  listenBtn.addEventListener("click", () => {
-    const utterance = new SpeechSynthesisUtterance(englishSentence);
-    // 원어민처럼 들리는 영어 음성 선택 (예: Google UK English Female)
-    const voice =
-      getVoiceByName("Google UK English Female") ||
-      getVoiceByName("Google US English");
-    if (voice) {
-      utterance.voice = voice;
-    }
-    utterance.rate = 0.9; // 발음 속도 조정
-    utterance.pitch = 1.0; // 발음 높낮이 조정
-    speechSynthesis.speak(utterance);
-  });
+//  listenBtn.addEventListener("click", () => {
+//    const utterance = new SpeechSynthesisUtterance(englishSentence);
+//    // 원어민처럼 들리는 영어 음성 선택 (예: Google UK English Female)
+//    const voice =
+//      getVoiceByName("Google UK English Female") ||
+//      getVoiceByName("Google US English");
+//    if (voice) {
+//      utterance.voice = voice;
+//    }
+//    utterance.rate = 0.9; // 발음 속도 조정
+//    utterance.pitch = 1.0; // 발음 높낮이 조정
+//    speechSynthesis.speak(utterance);
+//  });
 
   recordBtn.addEventListener('click', () => {
       navigator.mediaDevices.getUserMedia({ audio: true })
@@ -191,7 +191,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 페이지 로드 시 음성 목록을 미리 로드
-  loadVoices();
+loadVoices().then(() => {
+    listenBtn.addEventListener("click", () => {
+    if (speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+        }
+        const utterance = new SpeechSynthesisUtterance(englishSentence);
+        const voice =
+            getVoiceByName("Google UK English Female") ||
+            getVoiceByName("Google US English");
+        if (voice) {
+            utterance.voice = voice;
+        }
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        speechSynthesis.speak(utterance);
+    });
+    });
 });
 
 function flattenArray(channelBuffers) {
