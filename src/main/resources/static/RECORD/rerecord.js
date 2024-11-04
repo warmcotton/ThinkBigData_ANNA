@@ -1,3 +1,7 @@
+const searchForm = document.querySelector('.header__search'); // 검색 form 선택자 추가
+const searchInput = document.querySelector('.search_txt'); // 검색어 input 필드 선택자 추가
+
+
 document.addEventListener("DOMContentLoaded", () => {
     let englishSentence;
     let koreanSentence;
@@ -50,7 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
 //    utterance.pitch = 1.0; // 발음 높낮이 조정
 //    speechSynthesis.speak(utterance);
 //  });
-
+    // 검색어 입력 후 Cambridge 사전 검색으로 이동
+    searchForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // 기본 form 제출 방지
+        const query = searchInput.value.trim(); // 검색어 가져오기
+        if (query) {
+            // Cambridge 사전 검색 페이지를 새 창에서 열기
+            window.open(`https://dictionary.cambridge.org/ko/%EC%82%AC%EC%A0%84/%EC%98%81%EC%96%B4-%ED%95%9C%EA%B5%AD%EC%96%B4/${encodeURIComponent(query)}`, '_blank');
+        } else {
+            alert("검색어를 입력하세요."); // 검색어가 없을 때 경고
+        }
+    });
   recordBtn.addEventListener('click', () => {
       navigator.mediaDevices.getUserMedia({ audio: true })
           .then(stream => {
