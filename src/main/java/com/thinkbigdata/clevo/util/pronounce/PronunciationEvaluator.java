@@ -20,6 +20,9 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class PronunciationEvaluator {
     public Result evaluatePronunciation(String pronSentence, String originalSentence) throws PronounceEvaluationException {
+        pronSentence = pronSentence.replaceAll("[.?!,]", "").toLowerCase();
+        originalSentence = originalSentence.replaceAll("[.?!,]", "").toLowerCase();
+
         // 1. 입력된 문자열을 음소로 변환
         List<String> pronPhonemes = toPhonemes(pronSentence);
         List<String> originalPhonemes = toPhonemes(originalSentence);
